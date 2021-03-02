@@ -1,5 +1,8 @@
 import React from "react";
-import { getTodos as getTodosService } from "../services/todo.service";
+import {
+  getTodos as getTodosService,
+  createTodo as createTodoService,
+} from "../services/todo.service";
 
 export const TodoContext = React.createContext({});
 
@@ -9,8 +12,12 @@ function TodoProvider({ children }) {
     const { data } = await getTodosService();
     setTodos(data);
   };
+  const createTodo = async (todo) => {
+    const { data: newTodo } = await createTodoService(todo);
+    setTodos((state) => state.concat(newTodo));
+  };
   return (
-    <TodoContext.Provider value={{ getTodos, todos }}>
+    <TodoContext.Provider value={{ getTodos, todos, createTodo }}>
       {children}
     </TodoContext.Provider>
   );

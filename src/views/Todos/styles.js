@@ -8,6 +8,7 @@ export const Container = styled.div`
   border-radius: 10px;
   height: 800px;
   padding: 20px;
+  justify-content: space-between;
 `;
 
 export const TodoCard = styled.div`
